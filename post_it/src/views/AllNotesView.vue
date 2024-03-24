@@ -16,7 +16,7 @@ const fetchNotes = async () => {
     if (data && data.notes && Array.isArray(data.notes)) {
       notes.value = data.notes;
     } else {
-      console.error('Bad data format received from API');
+      console.error('API doit recevoir des données en JSON');
     }
   } catch (error) {
     console.error('A problem has been encountered while trying to fetch the notes:', error);
@@ -58,7 +58,7 @@ const deleteNote = async (note) => {
     }
     console.log('Note deleted successfully.');
     await fetchNotes();
-    alert("Your note has been deleted, so sad...");
+    confirm("Your note has been deleted, so sad...");
   } catch (error) {
     console.error(error);
   }
@@ -108,6 +108,37 @@ label {
   color: white;
   font-size: larger;
 }
+
+.save-button, .detail-button, .delete-button {
+  text-align: center;
+  background-color: rgb(105, 93, 62);
+  border: 0 solid #E5E7EB;
+  box-sizing: border-box;
+  color: #ffffff;
+  display: flex;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  justify-content: center;
+  margin-bottom: 2px;
+  font-size: medium;
+  width: 100%;
+  max-width: 460px;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.save-button, .detail-button, .delete-button:focus {
+  outline: 0;
+}
+
+.save-button, .detail-button, .delete-button:after {
+  content: '';
+  border: 1px solid #000000;
+}
+
+
 
 .button-53 {
   text-align: center;
@@ -162,14 +193,10 @@ label {
   }
 }
 
-
 .button-container {
   display: flex;
   flex-direction: column;
   gap: 3px;
-}
-.save-button, .detail-button, .delete-button {
-  width: 100%;
 }
 .titre {
   text-align: center;
